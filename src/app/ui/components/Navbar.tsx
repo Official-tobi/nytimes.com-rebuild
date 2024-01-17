@@ -8,6 +8,15 @@ import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import gsap from "gsap";
 import US from "./dropdown/US";
+import World from "./dropdown/World";
+import { Roboto } from "next/font/google";
+import Business from "./dropdown/Business";
+import Arts from "./dropdown/Arts";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "700", "900"],
+});
 interface marketData {
   ticker: string;
   percentagePriceChange: number;
@@ -205,7 +214,7 @@ function Navbar() {
       </nav>
 
       <div className="text-smi grid grid-cols-3 items-center"></div>
-      <section ref={dropdownContainer} className="px-20">
+      <section ref={dropdownContainer} className={`px-20 ${roboto.className}`}>
         <div className="relative text-smiii grid place-items-center border-y border-solid border-background-tertiary border-b-black py-3.5">
           <ul className="flex">
             <li className="px-3.5 group">
@@ -225,7 +234,9 @@ function Navbar() {
                 className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
               >
                 <div className="border-t border-solid border-background-tertiary "></div>
-                <div>World</div>
+                <div>
+                  <World />
+                </div>
               </div>
             </li>
             <li className="px-3.5 group">
@@ -234,7 +245,9 @@ function Navbar() {
                 className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
               >
                 <div className="border-t border-solid border-background-tertiary "></div>
-                <div>Business</div>
+                <div>
+                  <Business />
+                </div>
               </div>
             </li>
 
@@ -244,7 +257,9 @@ function Navbar() {
                 className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
               >
                 <div className="border-t border-solid border-background-tertiary "></div>
-                <div>Arts</div>
+                <div>
+                  <Arts />
+                </div>
               </div>
             </li>
 

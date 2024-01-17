@@ -6,12 +6,12 @@ import {
   newsletters,
   podcasts,
   topStories,
-} from "@/data/static/dropdown/us";
+} from "@/data/static/dropdown/arts";
 import LinkWithImageRow from "../../utils/layouts/pieces/LinkWithImageRow";
 
-const US = () => {
+const Arts = () => {
   return (
-    <DropdownLayout margin={false}>
+    <DropdownLayout margin={true}>
       <LinkRow heading="sections" links={sections} />
       <LinkRow heading="U.S. Politics" links={usPolitics} />
       <LinkRow heading="Top stories" links={topStories} />
@@ -25,4 +25,4 @@ const US = () => {
   );
 };
 
-export default US;
+export default Arts;
