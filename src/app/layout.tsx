@@ -25,7 +25,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={libreFranklin.className}>{children}</body>
+      <body className={`${libreFranklin.className} overflow-y-scroll`}>
+        {children}
+      </body>
     </html>
   );
 }

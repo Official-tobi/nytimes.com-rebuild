@@ -1,10 +1,13 @@
 "use client";
 import NavButton from "@/app/ui/elements/NavButton";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import NavAction from "../elements/NavAction";
 import ExpandableLink from "@/app/ui/elements/ExpandableLink";
-
+import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
+import { IconContext } from "react-icons";
+import gsap from "gsap";
+import US from "./dropdown/US";
 interface marketData {
   ticker: string;
   percentagePriceChange: number;
@@ -13,6 +16,10 @@ function Navbar() {
   const [stockMarketDataArr, setStockMarketDataArr] = useState<marketData[]>(
     []
   );
+  const [dataDispSelector, setDataDispSelector] = useState<number>(0);
+  const blinkingText = useRef<HTMLParagraphElement>(null);
+  const [dropdownPosition, setDropdownPosition] = useState({ top: 0 });
+  const dropdownContainer = useRef<HTMLElement>(null);
   function formatDate(): string {
     let date = new Date();
     const daysOfWeek = [
@@ -49,7 +56,7 @@ function Navbar() {
   }
   const getMarketData = async (stocksTicker: string) => {
     await fetch(
-      `https://api.polygon.io/v2/aggs/ticker/${stocksTicker}/range/1/day/2023-01-09/2023-01-09?adjusted=true&sort=asc&limit=120&apiKey=Nhd0DIWYwVVpohRDGuQl7t5p74HIFKWl`
+      `https://api.polygon.io/v2/aggs/ticker/${stocksTicker}/range/1/day/2023-01-09/2023-01-09?adjusted=true&sort=asc&limit=120&apiKey=${process.env.POLYGON_API_PASS_KEY}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -68,9 +75,32 @@ function Navbar() {
   };
 
   useEffect(() => {
-    // getMarketData("NVDA");
+    getMarketData("NVDA");
     getMarketData("AAPL");
-    // getMarketData("META");
+    getMarketData("META");
+  }, []);
+  useEffect(() => {
+    const tl = gsap.timeline({ repeat: -1 });
+
+    tl.to(blinkingText.current, {
+      opacity: 0,
+      duration: 1,
+      delay: 4,
+      onComplete: () => setDataDispSelector((prevValue) => (prevValue + 1) % 3),
+    }).to(blinkingText.current, {
+      opacity: 1,
+      duration: 1,
+      delay: 4,
+    });
+    return () => {
+      tl.pause();
+    };
+  }, []);
+  useEffect(() => {
+    if (dropdownContainer.current) {
+      const { bottom } = dropdownContainer.current.getBoundingClientRect();
+      setDropdownPosition({ top: bottom });
+    }
   }, []);
   return (
     <>
@@ -132,57 +162,154 @@ function Navbar() {
           </svg>
         </div>
         <div className="justify-self-end">
-          <p>
-            <span>{stockMarketDataArr[0]?.ticker}</span>
-            <span
-              className={`pl-2 ${
-                stockMarketDataArr[0]?.percentagePriceChange < 0
-                  ? "text-red-500"
-                  : "text-green-500"
-              }`}
-            >{`${stockMarketDataArr[0]?.percentagePriceChange.toFixed(
-              2
-            )}%`}</span>
-          </p>
+          <div ref={blinkingText}>
+            {stockMarketDataArr[dataDispSelector] ? (
+              <p>
+                {" "}
+                <span>{stockMarketDataArr[dataDispSelector]?.ticker}</span>
+                <span
+                  className={`pl-2 ${
+                    stockMarketDataArr[dataDispSelector]
+                      ?.percentagePriceChange < 0
+                      ? "text-red-500"
+                      : "text-green-500"
+                  }`}
+                >{`${stockMarketDataArr[
+                  dataDispSelector
+                ]?.percentagePriceChange.toFixed(2)}%`}</span>
+                <IconContext.Provider
+                  value={{
+                    className: `${
+                      stockMarketDataArr[dataDispSelector]
+                        ?.percentagePriceChange < 0
+                        ? "text-red-500"
+                        : "text-green-500"
+                    } inline`,
+                  }}
+                >
+                  <span>
+                    {stockMarketDataArr[dataDispSelector]
+                      ?.percentagePriceChange < 0 ? (
+                      <FaLongArrowAltDown />
+                    ) : (
+                      <FaLongArrowAltUp />
+                    )}
+                  </span>
+                </IconContext.Provider>
+              </p>
+            ) : (
+              <p></p>
+            )}
+          </div>
         </div>
       </nav>
 
       <div className="text-smi grid grid-cols-3 items-center"></div>
-      <section className="px-20">
-        <div className="text-smiii grid place-items-center border-y border-solid border-background-tertiary border-b-black py-3.5">
+      <section ref={dropdownContainer} className="px-20">
+        <div className="relative text-smiii grid place-items-center border-y border-solid border-background-tertiary border-b-black py-3.5">
           <ul className="flex">
-            <li className="px-3.5">
+            <li className="px-3.5 group">
               <ExpandableLink href="/">U.S</ExpandableLink>
+              <div
+                className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
+              >
+                <div className="border-t border-solid border-background-tertiary "></div>
+                <div>
+                  <US />
+                </div>
+              </div>
             </li>
-            <li className="px-3.5">
+            <li className="px-3.5 group">
               <ExpandableLink href="/">World</ExpandableLink>
+              <div
+                className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
+              >
+                <div className="border-t border-solid border-background-tertiary "></div>
+                <div>World</div>
+              </div>
             </li>
-            <li className="px-3.5">
+            <li className="px-3.5 group">
               <ExpandableLink href="/">Business</ExpandableLink>
+              <div
+                className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
+              >
+                <div className="border-t border-solid border-background-tertiary "></div>
+                <div>Business</div>
+              </div>
             </li>
-            <li className="px-3.5">
+
+            <li className="px-3.5 group">
               <ExpandableLink href="/">Arts</ExpandableLink>
+              <div
+                className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
+              >
+                <div className="border-t border-solid border-background-tertiary "></div>
+                <div>Arts</div>
+              </div>
             </li>
-            <li className="px-3.5">
+
+            <li className="px-3.5 group">
               <ExpandableLink href="/">Lifestyle</ExpandableLink>
+              <div
+                className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
+              >
+                <div className="border-t border-solid border-background-tertiary "></div>
+                <div>Lifestyle</div>
+              </div>
             </li>
-            <li className="px-3.5">
+            <li className="px-3.5 group">
               <ExpandableLink href="/">Opinion</ExpandableLink>
+              <div
+                className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
+              >
+                <div className="border-t border-solid border-background-tertiary "></div>
+                <div>Opinion</div>
+              </div>
             </li>
-            <li className="px-3.5 border-l border-solid border-background-quaternary">
+            <li className="px-3.5 group border-l border-solid border-background-quaternary">
               <ExpandableLink href="/">Audio</ExpandableLink>
+              <div
+                className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
+              >
+                <div className="border-t border-solid border-background-tertiary "></div>
+                <div>Audio</div>
+              </div>
             </li>
-            <li className="px-3.5">
+            <li className="px-3.5 group">
               <ExpandableLink href="/">Games</ExpandableLink>
+              <div
+                className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
+              >
+                <div className="border-t border-solid border-background-tertiary "></div>
+                <div>Games</div>
+              </div>
             </li>
-            <li className="px-3.5">
+            <li className="px-3.5 group">
               <ExpandableLink href="/">Cooking</ExpandableLink>
+              <div
+                className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
+              >
+                <div className="border-t border-solid border-background-tertiary "></div>
+                <div>Cooking</div>
+              </div>
             </li>
-            <li className="px-3.5">
+            <li className="px-3.5 group">
               <ExpandableLink href="/">Wirecutter</ExpandableLink>
+              <div
+                className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
+              >
+                <div className="border-t border-solid border-background-tertiary "></div>
+                <div>Wirecutter</div>
+              </div>
             </li>
-            <li className="px-3.5">
+            <li className="px-3.5 group">
               <ExpandableLink href="/">The Athletic</ExpandableLink>
+              <div
+                className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
+              >
+                <div className="border-t border-solid border-background-tertiary "></div>
+                <div>The Athletic </div>
+              </div>
             </li>
           </ul>
         </div>
