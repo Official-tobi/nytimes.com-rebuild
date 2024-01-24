@@ -213,7 +213,6 @@ function Navbar() {
         </div>
       </nav>
 
-      <div className="text-smi grid grid-cols-3 items-center"></div>
       <section ref={dropdownContainer} className={`px-20 ${roboto.className}`}>
         <div className="relative text-smiii grid place-items-center border-y border-solid border-background-tertiary border-b-black py-3.5">
           <ul className="flex">

@@ -8,120 +8,107 @@ interface linkWithImageData extends linkData {
 }
 export const sections: linkData[] = [
   {
-    title: "U.S.",
+    title: "Today's Art",
     href: "/",
   },
   {
-    title: "Politics",
+    title: "Books",
     href: "/",
   },
   {
-    title: "New York",
+    title: "Best Sellers",
     href: "/",
   },
   {
-    title: "Carlifornia",
+    title: "Dance",
     href: "/",
   },
   {
-    title: "Education",
+    title: "Movies",
     href: "/",
   },
   {
-    title: "Health",
+    title: "Music",
     href: "/",
   },
   {
-    title: "Obituaries",
+    title: "Television",
     href: "/",
   },
   {
-    title: "Science",
+    title: "Theater",
     href: "/",
   },
   {
-    title: "Climate",
+    title: "Pop Culture",
+    href: "/",
+  },
+
+  {
+    title: "T Magazine",
     href: "/",
   },
   {
-    title: "Sports",
-    href: "/",
-  },
-  {
-    title: "Business",
-    href: "/",
-  },
-  {
-    title: "Tech",
-    href: "/",
-  },
-  {
-    title: "The Upshot",
-    href: "/",
-  },
-  {
-    title: "The Magazine",
+    title: "Visual Arts",
     href: "/",
   },
 ];
-export const usPolitics: linkData[] = [
+export const recommendations: linkData[] = [
   {
-    title: "2024 Elections",
+    title: "Best of 2023",
     href: "/",
   },
   {
-    title: "Supreme court",
+    title: "Award Season",
     href: "/",
   },
   {
-    title: "Congress",
+    title: "Critic's Picks",
     href: "/",
   },
   {
-    title: "Biden Administration",
+    title: "What to Read",
+    href: "/",
+  },
+  {
+    title: "What to Watch",
+    href: "/",
+  },
+  {
+    title: "What to Listen To",
+    href: "/",
+  },
+  {
+    title: "5 Minutes to Make You Love Music",
     href: "/",
   },
 ];
 
-export const topStories: linkData[] = [
-  {
-    title: "Trump Invesigations",
-    href: "/",
-  },
-  {
-    title: "The Eric Adams Administration",
-    href: "/",
-  },
-  {
-    title: "Abortion in the U.S.",
-    href: "/",
-  },
-];
 export const newsletters: linkWithImageData[] = [
   {
-    title: "The Morning",
+    title: "Read Like the Wind",
     href: "/",
-    src: "https://images.unsplash.com/photo-1571080648416-3fda23702c51?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    desc: "Make sense of the day's news and ideas.",
+    src: "https://images.unsplash.com/photo-1535905557558-afc4877a26fc?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    desc: "Book recommendations from our critics",
   },
   {
-    title: "The Upshot",
+    title: "Watching",
     href: "/",
-    src: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    desc: "Analysis that explains politics, policy and everyday life.",
+    src: "https://images.unsplash.com/photo-1586899028174-e7098604235b?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    desc: "Streaming TV and movie recommendation.",
   },
 ];
 export const podcasts: linkWithImageData[] = [
   {
-    title: "The Daily",
+    title: "Book Review",
     href: "/",
-    src: "https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    desc: "The biggest stories of our time in 20 minutes of a day.",
+    src: "https://images.unsplash.com/photo-1513185041617-8ab03f83d6c5?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    desc: "The podcast that takes you inside the literary world.",
   },
   {
-    title: "The Run-up",
+    title: "Popcast",
     href: "/",
-    src: "https://images.unsplash.com/photo-1676312210846-104b89aafd81?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    desc: "On the campaign trial with Astead Herndon.",
+    src: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    desc: "Pop music news, new songs and albums, artists of note.",
   },
 ];

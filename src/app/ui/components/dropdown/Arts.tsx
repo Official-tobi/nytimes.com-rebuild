@@ -2,10 +2,9 @@ import DropdownLayout from "../../utils/layouts/DropdownLayout";
 import LinkRow from "../../utils/layouts/pieces/LinkRow";
 import {
   sections,
-  usPolitics,
+  recommendations,
   newsletters,
   podcasts,
-  topStories,
 } from "@/data/static/dropdown/arts";
 import LinkWithImageRow from "../../utils/layouts/pieces/LinkWithImageRow";
 
@@ -13,8 +12,7 @@ const Arts = () => {
   return (
     <DropdownLayout margin={true}>
       <LinkRow heading="sections" links={sections} />
-      <LinkRow heading="U.S. Politics" links={usPolitics} />
-      <LinkRow heading="Top stories" links={topStories} />
+      <LinkRow heading="Recommendations" links={recommendations} />
       <LinkWithImageRow
         heading="newsletters"
         links={newsletters}

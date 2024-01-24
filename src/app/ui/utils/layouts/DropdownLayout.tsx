@@ -5,9 +5,9 @@ interface DropdownLayoutProps {
 
 const DropdownLayout = ({ children, margin }: DropdownLayoutProps) => {
   return (
-    <section className={`${margin ? "px-12" : ""} flex justify-between`}>
+    <div className={`${margin ? "px-12" : ""} flex justify-between`}>
       {children}
-    </section>
+    </div>
   );
 };
 
