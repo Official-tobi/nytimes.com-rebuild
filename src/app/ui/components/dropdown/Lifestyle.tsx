@@ -1,20 +1,19 @@
 import DropdownLayout from "../../utils/layouts/Dropdown";
 import LinkRow from "../../utils/layouts/pieces/LinkRow";
+import LinkWithImageRow from "../../utils/layouts/pieces/LinkWithImageRow";
 import {
+  well,
   sections,
-  usPolitics,
   newsletters,
   podcasts,
-  topStories,
-} from "@/data/static/dropdown/us";
-import LinkWithImageRow from "../../utils/layouts/pieces/LinkWithImageRow";
-
-const US = () => {
+  columns,
+} from "@/data/static/dropdown/lifestyle";
+const Lifestyle = () => {
   return (
-    <DropdownLayout>
+    <DropdownLayout margin={true}>
       <LinkRow heading="sections" links={sections} />
-      <LinkRow heading="U.S. Politics" links={usPolitics} />
-      <LinkRow heading="Top stories" links={topStories} />
+      <LinkRow heading="columns" links={columns} />
+      <LinkRow heading="well" links={well} />
       <LinkWithImageRow
         heading="newsletters"
         links={newsletters}
@@ -25,4 +24,4 @@ const US = () => {
   );
 };
 
-export default US;
+export default Lifestyle;

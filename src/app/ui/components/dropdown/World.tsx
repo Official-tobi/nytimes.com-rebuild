@@ -4,7 +4,7 @@ import {
   newsletters,
   podcasts,
 } from "@/data/static/dropdown/world";
-import DropdownLayout from "../../utils/layouts/DropdownLayout";
+import DropdownLayout from "../../utils/layouts/Dropdown";
 import LinkRow from "../../utils/layouts/pieces/LinkRow";
 import LinkWithImageRow from "../../utils/layouts/pieces/LinkWithImageRow";
 
@@ -18,7 +18,7 @@ const World = () => {
         redirect={false}
         heading="newsletters"
       />
-      <LinkWithImageRow links={podcasts} redirect={false} heading="podcasts" />
+      <LinkWithImageRow links={podcasts} redirect={true} heading="podcasts" />
     </DropdownLayout>
   );
 };

@@ -1,16 +1,13 @@
 import Link from "next/link";
-
-interface linkData {
-  title: string;
-  href: string;
-}
+import { linkData } from "@/types/types";
 
 interface LinkRowProps {
   heading: string;
   links: linkData[];
+  redirect?: boolean;
 }
 
-const LinkRow = ({ heading, links }: LinkRowProps) => {
+const LinkRow = ({ heading, links, redirect }: LinkRowProps) => {
   const lists = chunkArray(links, 7);
   function chunkArray(array: linkData[], chunkSize: number) {
     const result = [];
@@ -25,9 +22,9 @@ const LinkRow = ({ heading, links }: LinkRowProps) => {
       <div className="uppercase py-5 text-background-inverseSecondary">
         {heading}
       </div>
-      <div className="flex">
+      <div className="flex gap-5">
         {lists.map((list, ulIndex) => (
-          <ul key={ulIndex} className={`px-${ulIndex && "12"}`}>
+          <ul key={ulIndex}>
             {list.map((link, liIndex) => (
               <li key={liIndex} className=" py-1">
                 <Link
@@ -41,6 +38,18 @@ const LinkRow = ({ heading, links }: LinkRowProps) => {
           </ul>
         ))}
       </div>
+      {redirect ? (
+        <div className="pt-3 text-center">
+          <Link
+            href={"/"}
+            className=" text-background-inverseSecondary hover:underline"
+          >
+            See all {heading}
+          </Link>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };

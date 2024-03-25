@@ -1,17 +1,10 @@
 import LinkWithImage from "@/app/ui/elements/LinkWithImage";
 import Link from "next/link";
-interface linkData {
-  title: string;
-  href: string;
-}
-interface linkWithImageData extends linkData {
-  src: string;
-  desc: string;
-}
+import { linkWithImageData } from "@/types/types";
 interface LinkWithImageRowProps {
   heading: string;
   links: linkWithImageData[];
-  redirect: boolean;
+  redirect?: boolean;
 }
 
 const LinkWithImageRow = ({

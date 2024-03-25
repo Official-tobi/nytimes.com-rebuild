@@ -1,11 +1,4 @@
-interface linkData {
-  title: string;
-  href: string;
-}
-interface linkWithImageData extends linkData {
-  src: string;
-  desc: string;
-}
+import { linkData, linkWithImageData } from "@/types/types";
 export const sections: linkData[] = [
   {
     title: "Today's Art",

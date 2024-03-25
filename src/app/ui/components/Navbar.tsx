@@ -12,7 +12,10 @@ import World from "./dropdown/World";
 import { Roboto } from "next/font/google";
 import Business from "./dropdown/Business";
 import Arts from "./dropdown/Arts";
-
+import Lifestyle from "./dropdown/Lifestyle";
+import Opinion from "./dropdown/Opinion";
+import Audio from "./dropdown/Audio";
+import Cooking from "./dropdown/Cooking";
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -268,7 +271,9 @@ function Navbar() {
                 className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
               >
                 <div className="border-t border-solid border-background-tertiary "></div>
-                <div>Lifestyle</div>
+                <div>
+                  <Lifestyle />
+                </div>
               </div>
             </li>
             <li className="px-3.5 group">
@@ -277,7 +282,9 @@ function Navbar() {
                 className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
               >
                 <div className="border-t border-solid border-background-tertiary "></div>
-                <div>Opinion</div>
+                <div>
+                  <Opinion />
+                </div>
               </div>
             </li>
             <li className="px-3.5 group border-l border-solid border-background-quaternary">
@@ -286,7 +293,9 @@ function Navbar() {
                 className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
               >
                 <div className="border-t border-solid border-background-tertiary "></div>
-                <div>Audio</div>
+                <div>
+                  <Audio />
+                </div>
               </div>
             </li>
             <li className="px-3.5 group">
@@ -304,7 +313,9 @@ function Navbar() {
                 className={`pt-4 group-hover:block hidden absolute top-[${dropdownPosition.top}px] left-0 h-[30vh] w-full bg-white`}
               >
                 <div className="border-t border-solid border-background-tertiary "></div>
-                <div>Cooking</div>
+                <div>
+                  <Cooking />
+                </div>
               </div>
             </li>
             <li className="px-3.5 group">

@@ -4,7 +4,7 @@ import {
   newsletters,
   podcasts,
 } from "@/data/static/dropdown/business";
-import DropdownLayout from "../../utils/layouts/DropdownLayout";
+import DropdownLayout from "../../utils/layouts/Dropdown";
 import LinkRow from "../../utils/layouts/pieces/LinkRow";
 import LinkWithImageRow from "../../utils/layouts/pieces/LinkWithImageRow";
 
